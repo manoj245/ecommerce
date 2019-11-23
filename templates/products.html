@@ -1,0 +1,39 @@
+{% extends 'footer.html' %}
+{% block body %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+</head>
+    <body style="background-color: #00bcd4";width="100px;length=100px">
+    <table border="1" >
+    <tr>
+        <th>pid </th>
+        <th>pcat</th>
+        <th>pname</th>
+        <th>pdiscnt</th>
+        <th>pcost</th>
+        <th>pmfdt</th>
+        <th>expdt</th>
+    </tr>
+    {% for rec in recs %}
+        <tr>
+            <td>{{ rec.pid }}</td>
+            <td>{{ rec.pcat }}</td>
+            <td>{{ rec.pname }}</td>
+            <td>{{ rec.pdiscnt }}</td>
+            <td>{{ rec.pcost }}</td>
+            <td>{{ rec.pmfdt }}</td>
+            <td>{{ rec.pexpdt }}</td>
+            <td><img src="{{ rec.photo.url }}" width="120" height="160"></td>
+            <td><a href="/cartapp/addcart/?pid={{ rec.pid }}">add to cart</a></td>
+        </tr>
+
+    {% endfor %}
+</table>
+</body>
+{% endblock %}
+</html>
+

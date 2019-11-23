@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Hello Properties</title>
+	<!-- bootstrap-css -->
+	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<!--// bootstrap-css -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css' %}">
+	<!-- css -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css" media="all" />
+	<!--// css -->
+	<!-- font-awesome icons -->
+	<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' %}">
+	<!-- //font-awesome icons -->
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" type="text/css" media="all">
+</head>
+<body style="background-color: #00bcd4;">
+<div class="header">
+		<div class="main_header">
+			<div class="header_nav">
+				<nav class="navbar navbar-default">
+					<div class="navbar-header navbar-left">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbart">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+{#						<a class="navbar-brand" href="index.html"><img src="{% static 'images/logo.png' %}" alt="HP"/></a>#}
+					</div>
+
+					<div class="collapse navbar-collapse navbar-right" id="navbart">
+						<nav class="nav_starts">
+							<ul class="nav navbar-nav">
+
+								<li><a href="http://localhost:8000/authapp/login/">Home</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Track <b class="caret"></b></a>
+									<ul class="dropdown-menu nav_dropdown">
+										<li><a href="buyres.html">Order Status</a></li>
+										<li><a href="buycomm.html">Cancel Order</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+                                    <li><a href="http://localhost:8000/cartapp/cartview/">Cart</a></li>
+
+								</li>
+                                <li><a href="http://localhost:8000/authapp/my_logout">logout</a></li>
+
+								<li class="dropdown">
+
+                                </ul>
+
+						</nav>
+
+<form action="http://127.0.0.1:8000/cartapp/modifiedcart">
+
+    id:<input  type="text" value={{ cartid }} name="id"><br>
+    <br>pid:<input type="text" value={{ pid }} name="pid"><br>
+    old qty:<input type="text" value={{ oqt }} name="tot_qty"><br>
+    select new quantity:<select name="nqt">
+    {% for rec in qtt %}
+    <option value={{ rec }}>{{ rec }}</option>
+    {% endfor %}
+</select><br>
+<input type="submit" value="modify">
+</form>
+                    </div>
+                </nav>
+            </div>
+        </div>
+</div>
+</body>
+</html>

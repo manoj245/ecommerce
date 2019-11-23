@@ -1,0 +1,217 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <title>Hello Properties</title>
+	<!-- bootstrap-css -->
+	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet" type="text/css" media="all" />
+	<!--// bootstrap-css -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css' %}">
+	<!-- css -->
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}" type="text/css" media="all" />
+	<!--// css -->
+	<!-- font-awesome icons -->
+	<link href="{% static 'css/font-awesome.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' %}">
+	<!-- //font-awesome icons -->
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" type="text/css" media="all">
+
+</head>
+    <style>
+    table{
+        width: 70%;
+
+    }
+    </style>
+<body style="background-color:#00bcd4">
+
+				<nav class="navbar navbar-default">
+					<div class="navbar-header navbar-left">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbart">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+{#						<a class="navbar-brand" href="index.html"><img src="{% static 'images/logo.png' %}" alt="HP"/></a>#}
+					</div>
+
+					<div class="collapse navbar-collapse navbar-right" id="navbart">
+						<nav class="nav_starts">
+							<ul class="nav navbar-nav">
+								<li><a href="http://localhost:8000/">Home</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Track <b class="caret"></b></a>
+									<ul class="dropdown-menu nav_dropdown">
+										<li><a href="buyres.html">Order Status</a></li>
+										<li><a href="buycomm.html">Cancel Order</a></li>
+									</ul>
+								</li>
+								<li class="dropdown">
+                                    <li><a href="http://localhost:8000/cartapp/cartview/">Cart</a></li>
+
+								</li>
+                                <li><a href="http://localhost:8000/authapp/my_logout">logout</a></li>
+
+								<li class="dropdown">
+
+
+
+
+
+							</ul>
+						</nav>
+				    </div>
+				</nav>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <style>
+                    body {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)}
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+                </style>
+<table border="1" >
+    <tr>
+        <th>pid </th>
+        <th>pcat</th>
+        <th>pname</th>
+        <th>pdiscnt</th>
+        <th>pcost</th>
+        <th>pmfdt</th>
+        <th>expdt</th>
+        <th>image</th>
+    </tr>
+    {% for rec in recs %}
+        <tr>
+            <td>{{ rec.pid }}</td>
+            <td>{{ rec.pcat }}</td>
+            <td>{{ rec.pname }}</td>
+            <td>{{ rec.pdiscnt }}</td>
+            <td>{{ rec.pcost }}</td>
+            <td>{{ rec.pmfdt }}</td>
+            <td>{{ rec.pexpdt }}</td>
+            <td><img id="myImg" src="{{ rec.photo.url }}" alt="Snow" style="width:100px;max-width:100px"></td>
+{#<img  width="100" height="120"></td>#}
+            <td><a href="/cartapp/addcart/?pid={{ rec.pid }}">add to cart</a></td>
+        </tr>
+
+    {% endfor %}
+</table>
+</body>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("myImg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+  modal.style.display = "block";
+  modalImg.src = this.src;
+  captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+</script>
+</html>
+
